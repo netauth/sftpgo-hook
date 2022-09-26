@@ -14,6 +14,7 @@ import (
 	"google.golang.org/grpc/status"
 
 	"github.com/netauth/netauth/pkg/netauth"
+	"github.com/netauth/netauth/pkg/netauth/subtle"
 )
 
 var (
@@ -86,14 +87,8 @@ func doAuth(c *netauth.Client) {
 			dumpUser(minimalSFTPGoUser{})
 			return
 		}
-		found := false
-		for _, k := range keys["SSH"] {
-			if k == publickey {
-				found = true
-				break
-			}
-		}
-		if !found {
+		err = subtle.CompareSSHKeys(keys["SSH"], publickey)
+		if err != nil {
 			dumpUser(minimalSFTPGoUser{})
 			return
 		}
