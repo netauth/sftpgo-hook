@@ -8,5 +8,7 @@ It can be enabled by configuring the following environment variables:
 
 ```
 SFTPGO_DATA_PROVIDER__EXTERNAL_AUTH_HOOK=/absolute/path/to/sftpgo-hook
-SFTPGO_NETAUTH_HOMEDIR=/base/path/for/netauth/users/
+SFTPGO_COMMAND__COMMANDS__0__PATH=/absolute/path/to/sftpgo-hook
+SFTPGO_COMMAND__COMMANDS__0__ENV=SFTPGO_NETAUTH_REQUIREGROUP=optional-group,SFTPGO_NETAUTH_HOMEDIR=/base/path/for/netauth/users
+SFTPGO_COMMAND__COMMANDS__0__HOOK=external_auth
 ```
